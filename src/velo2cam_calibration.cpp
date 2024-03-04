@@ -785,9 +785,10 @@ int main(int argc, char **argv) {
   if (is_sensor2_cam) {
     sensor2_final_transformation_frame = sensor2_rotated_frame_id;
     std::ostringstream sensor2_rot_stream_pub;
-    sensor2_rot_stream_pub << "0 0 0 -1.57079632679 0 -1.57079632679 "
-                           << sensor2_rotated_frame_id << " "
-                           << sensor2_frame_id << " 10";
+    // [12/18/23 4:22 PM] Stefan Nordborg Eriksen: I move the first rotation to the next axis, and reversed the third one
+    sensor2_rot_stream_pub << "0 0 0 0 -1.57079632679 1.57079632679 "
+                           << sensor2_frame_id << " "
+                           << sensor2_rotated_frame_id  << " 10";
     string sensor2_rotation = sensor2_rot_stream_pub.str();
 
     TiXmlElement *sensor2_rotation_node = new TiXmlElement("node");
